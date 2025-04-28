@@ -18,9 +18,13 @@ int main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-
+		if (save_map(argv[1], &game) == 1)
+			exit(EXIT_FAILURE);
+		game.mlx = mlx.init();
+		game.window = mlx.new_window(game.mlx, (game.map_cols - 1) * 32), \
+		(game.map_rows + 1) * 32, "so_long");
 	}
 	else
-		write(2, "Not enough arguments.\n", 22);
+		write(1, "Not enough arguments.\n", 22);
 	return (0);
 }

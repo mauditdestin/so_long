@@ -17,47 +17,36 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-/* Define the keyboard keys */
-# define KEY_UP 65362
-# define KEY_DOWN 65364
-# define KEY_RIGHT 65363
-# define KEY_LEFT 65361
-# define KEY_ESCAPE 65307
-
-typedef	struct s_map
-{
-	int		height;
-	int		width;
-	int		player_spot;
-	int		player_count;
-	int		exit_spot;
-	int		exit_count;
-	int		sum_lines;
-	int		sum_colums;
-	int		collect_count;
-	int		check_collect_count;
-	char	*check_map;
-	char	*play_map;
-	int		check_exit_reach;
-}		t_map;
 typedef	struct s_textures
 {
-	
+	void	*ground;
+	void	*coin;
+	void	*wall;
+	void	*door;
 }		t_textures;
 typedef	struct s_player
 {
-	
+	void	*player_idle;
 }		t_player;
 typedef	struct s_game
 {
-	t_map		map;
 	t_textures	textures;
 	t_player	player;
 	void		*mlx;
-	void		*win2;
+	void		*window;
+	int			score;
+	int			coins;
+	int			moves;
+	int			height;
+	int			width;
+	int			x;
+	int			y;
+	int			map_rows;
+	int			map_cols;
+	int			exit_row;
+	int			exit_col;
+	int			flood_fill_coins;
+	int			current_frames;
+	int			player_position;
+	char		**map;
 }		t_game;
-
-
-// RESSOURCES
-void	free_r(t_game *game);
-int		close_window(void *p);
