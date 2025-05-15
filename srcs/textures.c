@@ -14,7 +14,7 @@
 
 void load_textures(t_data *data)
 {
-	
+	 
 	ft_printf("|\tTextures loaded\n|\n");
 }
 
