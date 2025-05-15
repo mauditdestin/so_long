@@ -17,6 +17,20 @@
 # include <fcntl.h>
 # include <unistd.h>
 
+/* */
+# define SPRITE_SIZE 64
+# define FPS 100000
+
+typedef struct s_data {
+	t_textures	texture;
+	char		**map;
+	char		**check_map;
+	int			size_y;
+	int			size_x;
+	int			cur_y;
+	int			cur_x;
+	int			movements;
+}	t_data;
 typedef	struct s_textures
 {
 	void	*ground;
@@ -24,29 +38,9 @@ typedef	struct s_textures
 	void	*wall;
 	void	*door;
 }		t_textures;
-typedef	struct s_player
-{
-	void	*player_idle;
-}		t_player;
-typedef	struct s_game
-{
-	t_textures	textures;
-	t_player	player;
-	void		*mlx;
-	void		*window;
-	int			score;
-	int			coins;
-	int			moves;
-	int			height;
-	int			width;
-	int			x;
-	int			y;
-	int			map_rows;
-	int			map_cols;
-	int			exit_row;
-	int			exit_col;
-	int			flood_fill_coins;
-	int			current_frames;
-	int			player_position;
-	char		**map;
-}		t_game;
+
+// MOVEMENTS
+void	up(t_data *data);
+void	down(t_data *data);
+void	right(t_data *data);
+void	left(t_data *data);

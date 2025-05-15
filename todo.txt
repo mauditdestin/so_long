@@ -1,0 +1,12 @@
+- Check wall
+- Check collectible
+- Check exit
+- Sprites
+- Check map
+- Check ber
+- Parsing map
+- load textures - doing
+- destroy textures - doing
+- map render
+- map making
+- error handler

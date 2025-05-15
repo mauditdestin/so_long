@@ -12,19 +12,36 @@
 
 #include "../includes/so_long.h"
 
+static void	free_data(t_data *data)
+{
+	int	i;
+
+	if (data->check_map || data->map)
+	{
+		i = 0;
+		while (i != data->size_y)
+		{
+			free(data->check_map[i]);
+			free(data->map[i]);
+			i++;
+		}
+		free(data->check_map);
+		free(data->map);
+	}
+	free(data);
+}
+
 int main(int argc, char **argv)
 {
-	t_game game;
-
-	if (argc == 2)
-	{
-		if (save_map(argv[1], &game) == 1)
-			exit(EXIT_FAILURE);
-		game.mlx = mlx.init();
-		game.window = mlx.new_window(game.mlx, (game.map_cols - 1) * 32), \
-		(game.map_rows + 1) * 32, "so_long");
-	}
-	else
-		write(1, "Not enough arguments.\n", 22);
+	t_data *data;
+	data = malloc(sizeof(t_data));
+	if (!data)
+		return (1);
+	ft_memset(data, 0, sizeof(t_data));
+	ber_check();
+	map_making();
+	free_data(data);
+	ft_printf("|\n| Window closed, good bye !\n");
+	ft_printf("+--------------------\n");
 	return (0);
 }

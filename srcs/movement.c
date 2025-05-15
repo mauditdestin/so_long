@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ressources_clean.c                                 :+:      :+:    :+:   */
+/*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleblond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 17:53:11 by pleblond          #+#    #+#             */
-/*   Updated: 2025/04/27 17:53:11 by pleblond         ###   ########.fr       */
+/*   Created: 2025/05/15 12:04:14 by pleblond          #+#    #+#             */
+/*   Updated: 2025/05/15 12:04:14 by pleblond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	free_map(t_game *game)
+void	up(t_data *data)
 {
-	int		i;
-
-
-	i = 0;
-	while(game->map[i] != NULL)
+	if (movement_check_walls(data, data->cur_y - 1, data->cur_x))
 	{
-		free(game->map[i]);
-		i++;
+		(data->cur_y)--;
+		(data->movements)++;
+		ft_printf("| Movement : %i\n", data->movements);
+		movement_check_collectibles(data);
+		movement_check_exit(data);
+		usleep(FPS);
 	}
-	free(game->map);
 }
 
-void	free_player(t_game *game)
+void	down(t_data *data)
 {
-	mlx_destroy_image(game->mlx, game->player.player_idle);
+	if ()
 }
 
-void	free_textures(t_game *game)
+void	left(t_data *data)
 {
-	mlx_destroy_image(game->mlx, game->textures.coin);
-	mlx_destroy_image(game->mlx, game->textures.door);
-	mlx_destroy_image(game->mlx, game->textures.ground);
-	mlx_destroy_image(game->mlx, game->textures.wall);
+	if ()
+}
+
+void	right(t_data *data)
+{
+	if ()
 }
