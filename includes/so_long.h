@@ -16,13 +16,16 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <MLX42/MLX42.h>
 
 /* */
 # define SPRITE_SIZE 64
 # define FPS 100000
 
 typedef struct s_data {
+	mlx_t		*mlx;
 	t_textures	texture;
+	t_image		image;
 	char		**map;
 	char		**check_map;
 	int			size_y;
@@ -33,11 +36,30 @@ typedef struct s_data {
 }	t_data;
 typedef	struct s_textures
 {
-	void	*ground;
-	void	*coin;
-	void	*wall;
-	void	*door;
+	mlx_texture_t	*play;
+	mlx_texture_t	*wall;
+	mlx_texture_t	*exit;
+	mlx_texture_t	*back;
+	mlx_texture_t	*wgem;
+	mlx_texture_t	*bgem;
+	mlx_texture_t	*ggem;
+	mlx_texture_t	*rgem;
+	mlx_texture_t	*skeleton;
 }		t_textures;
+
+typedef	struct s_image
+{
+	mlx_image_t		*back;
+	mlx_image_t		*play;
+	mlx_image_t		*wall;
+	mlx_image_t		*exit;
+	mlx_image_t		*wgem;
+	mlx_image_t		*bgem;
+	mlx_image_t		*ggem;
+	mlx_image_t		*rgem;
+	mlx_image_t		*skeleton;
+
+}		t_image;
 
 // MOVEMENTS
 void	up(t_data *data);
