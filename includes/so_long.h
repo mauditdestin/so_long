@@ -21,7 +21,6 @@
 /* */
 # define SPRITE_SIZE 64
 # define FPS 100000
-
 typedef struct s_data {
 	mlx_t		*mlx;
 	t_textures	texture;
@@ -33,6 +32,8 @@ typedef struct s_data {
 	int			cur_y;
 	int			cur_x;
 	int			movements;
+	int			collected_gems;
+	int			total_gems;
 }	t_data;
 typedef	struct s_textures
 {
@@ -66,3 +67,8 @@ void	up(t_data *data);
 void	down(t_data *data);
 void	right(t_data *data);
 void	left(t_data *data);
+
+// Check
+void	movement_check_exit(t_data *data);
+int		movement_check_walls(t_data *data, int y, int x);
+void	movement_check_collectible(t_data *data);
