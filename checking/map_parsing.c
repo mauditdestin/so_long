@@ -27,3 +27,26 @@ static void	map_malloc(t_data *data)
 		data->check_map[i++] = malloc(sizeof(char) * data->size_x + 1);
 	}
 }
+
+// Vérifie que chaque caractère de la map est valide ('1', '0', 'P', 'C', 'E' ou 'T').
+// Quitte le programme avec une erreur si un caractère inconnu est trouvé.
+static void check_map(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while(y != data->size_y)
+	{
+		while(x != data->size_x)
+		{
+			if (data->map[y][x] != '1' && data->map[y][x] != '0' && data->map[y][x] != 'P'
+				&& data->map[y][x] != 'C' && data->map[y][x] != 'E' && data->map[y][x] != 'T')
+				error_exit(data, "Invalid character in map.");
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
