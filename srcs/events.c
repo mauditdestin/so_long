@@ -39,7 +39,33 @@ void	movement_check_exit(t_data *data)
 	}
 }
 
-void	movement_check_collectible(t_data *data)
+// Cette fonction doit trouver quelle instance exacte d'une gemme doit être supprimée sur la map.
+// 1. Récupérer la couleur de la gemme sous le joueur.
+// 2. Parcourir la map depuis le haut gauche jusqu'à la position actuelle du joueur.
+// 3. À chaque fois qu'on trouve une gemme de la même couleur (majuscule ou minuscule), on incrémente un compteur.
+// 4. Ce compteur correspond au numéro d'instance du sprite à supprimer.
+// 5. Appeler delete_gem_sprite() avec la couleur et le numéro d'instance pour supprimer le bon sprite.
+void	remove_gem(t_data *data)
 {
 
 }
+
+// Check si le joueur est sur une gemme (G, B, W, R).
+// Si oui, on la ramasse, on met à jour la map, on affiche le nombre de gemmes collectées,
+// et on affiche un message spécial si toutes les gemmes ont été trouvées.
+void	movement_check_collectible(t_data *data)
+{
+	if (data->map[data->cur_y][data->cur_x] == 'G'
+		|| data->map[data->cur_y][data->cur_x] == 'W'
+		|| data->map[data->cur_y][data->cur_x] == 'B'
+		|| data->map[data->cur_y][data->cur_x] == 'R')
+	{
+		remove_gem(data);
+		data->map[data->cur_y][data->cur_x] += 32;
+		(data->collected_gems)++;
+		ft_printf("|\tGems: %i\n", data->collected_gems);
+		if (data->collected_gems == data->total_gems)
+			ft_printf("|\tYou find all gems! Find the exit\n");
+	}
+}
+
