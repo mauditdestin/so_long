@@ -39,6 +39,7 @@ void	movement_check_exit(t_data *data)
 	}
 }
 
+// Désactive l'instance d'une gemme selon sa couleur et son index pour la retirer visuellement du jeu.
 static void delete_gems_sprite(t_data *data, char gem_color, int gem_instance)
 {
 	if (gem_color == 'G')
@@ -59,7 +60,7 @@ static void delete_gems_sprite(t_data *data, char gem_color, int gem_instance)
 // 5. Appeler delete_gem_sprite() avec la couleur et le numéro d'instance pour supprimer le bon sprite.
 void	remove_gem(t_data *data)
 {
-
+	
 }
 
 // Check si le joueur est sur une gemme (G, B, W, R).

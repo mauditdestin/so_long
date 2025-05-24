@@ -80,3 +80,4 @@ void	left(t_data *data);
 void	movement_check_exit(t_data *data);
 int		movement_check_walls(t_data *data, int y, int x);
 void	movement_check_collectible(t_data *data);
+void	remove_gem(t_data *data);
