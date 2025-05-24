@@ -39,6 +39,18 @@ void	movement_check_exit(t_data *data)
 	}
 }
 
+static void delete_gems_sprite(t_data *data, char gem_color, int gem_instance)
+{
+	if (gem_color == 'G')
+		data->image.ggem->instances[gem_instance].enabled = false;
+	if (gem_color == 'B')
+		data->image.bgem->instances[gem_instance].enabled = false;
+	if (gem_color == 'W')
+		data->image.wgem->instances[gem_instance].enabled = false;
+	if (gem_color == 'R')
+		data->image.rgem->instances[gem_instance].enabled = false;	
+}
+
 // Cette fonction doit trouver quelle instance exacte d'une gemme doit être supprimée sur la map.
 // 1. Récupérer la couleur de la gemme sous le joueur.
 // 2. Parcourir la map depuis le haut gauche jusqu'à la position actuelle du joueur.
