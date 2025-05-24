@@ -62,6 +62,14 @@ typedef	struct s_image
 
 }		t_image;
 
+typedef struct s_gem
+{
+	int		y;
+	int		x;
+	char	gem_color;
+	int		gem_instance;
+}		t_gem;
+
 // MOVEMENTS
 void	up(t_data *data);
 void	down(t_data *data);
