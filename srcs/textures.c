@@ -15,16 +15,16 @@
 void load_textures(t_data *data)
 {
 	ft_printf("| Loading textures :\n");
-	data->texture.back = mlx_load_png("../sprites/background.png");
+	data->texture.back = mlx_load_png("../sprites/floor_sprite.png");
 	data->image.back = mlx_texture_to_image(data->mlx, data->texture.back);
 
-	data->texture.wall = mlx_load_png("../sprites/wall.png");
+	data->texture.wall = mlx_load_png("../sprites/wall_sprite.png");
 	data->image.wall = mlx_texture_to_image(data->mlx, data->texture.wall);
 
-	data->texture.play = mlx_load_png("../sprites/player.png");
+	data->texture.play = mlx_load_png("../sprites/player_sprite.png");
 	data->image.play = mlx_texture_to_image(data->mlx, data->texture.play);
 
-	data->texture.exit = mlx_load_png("../sprites/exit.png");
+	data->texture.exit = mlx_load_png("../sprites/exit_sprite.png");
 	data->image.exit = mlx_texture_to_image(data->mlx, data->texture.exit);
 
 	data->texture.bgem = mlx_load_png("../sprites/blue_gem.png");
@@ -39,7 +39,7 @@ void load_textures(t_data *data)
 	data->texture.rgem = mlx_load_png("../sprites/red_gem.png");
 	data->image.rgem = mlx_texture_to_image(data->mlx, data->texture.rgem);
 
-	data->texture.skeleton = mlx_load_png("../sprites/skeleton.png");
+	data->texture.skeleton = mlx_load_png("../sprites/skeleton_sprite.png");
 	data->image.skeleton = mlx_texture_to_image(data->mlx, data->texture.skeleton);
 	ft_printf("|\tTextures loaded\n|\n");
 }
