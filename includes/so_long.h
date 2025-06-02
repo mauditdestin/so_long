@@ -82,6 +82,7 @@ int		movement_check_walls(t_data *data, int y, int x);
 void	movement_check_collectible(t_data *data);
 void	remove_gem(t_data *data);
 void	map_making(t_data *data);
+void	map_rendering(t_data *data);
 
 // GRAPHISM
 void	load_textures(t_data *data);
