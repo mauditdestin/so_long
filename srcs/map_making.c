@@ -28,3 +28,10 @@ static void	player_commands(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT) || mlx_is_key_down(data->mlx, MLX_KEY_A))
 		left(data);	
 }
+
+void map_making(t_data *data)
+{
+	data->mlx = mlx_init(data->size_y * SPRITE_SIZE, data->size_y * SPRITE_SIZE, "So long", true);
+	if (!(data->mlx))
+		error_exit(data, "Window couldn't be created");
+}

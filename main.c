@@ -31,6 +31,13 @@ static void	free_data(t_data *data)
 	free(data);
 }
 
+void error_exit(t_data *data, char *erreur)
+{
+	free_data(data);
+	ft_printf("|\tError\n---> %s\n", erreur);
+	exit(EXIT_FAILURE);
+}
+
 int main(int argc, char **argv)
 {
 	t_data *data;
@@ -38,8 +45,8 @@ int main(int argc, char **argv)
 	if (!data)
 		return (1);
 	ft_memset(data, 0, sizeof(t_data));
-	ber_check();
-	map_making();
+	ber_check(argc, argv, data);
+	map_making(data);
 	free_data(data);
 	ft_printf("|\n| Window closed, good bye !\n");
 	ft_printf("+--------------------\n");
