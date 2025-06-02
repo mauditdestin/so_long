@@ -34,4 +34,11 @@ void map_making(t_data *data)
 	data->mlx = mlx_init(data->size_y * SPRITE_SIZE, data->size_y * SPRITE_SIZE, "So long", true);
 	if (!(data->mlx))
 		error_exit(data, "Window couldn't be created");
+	load_textures(data);
+	map_rendering(data);
+	data->collected_gems = 0;
+	mlx_loop_hook(data->mlx, player_commands, data);
+	mlx_loop(data->mlx);
+	destroy_texture(data);
+	mlx_terminate(data->mlx);
 }
