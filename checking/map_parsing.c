@@ -50,3 +50,15 @@ static void check_map(t_data *data)
 		y++;
 	}
 }
+
+// Vérifie que le buffer de la map n’est pas vide après lecture du fichier.
+// Si vide, libère les ressources, ferme le fichier et affiche une erreur.
+static void check_and_free_map(t_data *data, char *buf, int fd)
+{
+	if (!buf)
+	{
+		free(buf);
+		close(fd);
+		error_exit(data, "There is nothing in the map.");
+	}
+}
