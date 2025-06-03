@@ -20,7 +20,18 @@ static void	check_doublon(t_data *data)
 	x = 0;
 	y = 0;
 	ft_printf("| Doublons Check :\n");
-	while (y)
+	while (y != data->size_y)
+	{
+		while (x != data->size_x)
+		{
+			fonctiontemp(data, y, x);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	error_doublon(data);
+	ft_printf("|\tNo Doublons\n");
 }
 
 void	error_doublon(t_data *data)
