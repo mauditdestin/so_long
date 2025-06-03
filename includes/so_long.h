@@ -27,12 +27,15 @@ typedef struct s_data {
 	t_image		image;
 	char		**map;
 	char		**check_map;
+	int			start_amount;
 	int			size_y;
 	int			size_x;
 	int			cur_y;
 	int			cur_x;
 	int			movements;
 	int			collected_gems;
+	int			exit_i;
+	int			exit_amount;
 	int			total_gems;
 }	t_data;
 typedef	struct s_textures
@@ -89,4 +92,5 @@ void	load_textures(t_data *data);
 void	destroy_texture(t_data *data);
 
 // ERROR
-void error_exit(t_data *data, char *erreur);
+void	error_exit(t_data *data, char *erreur);
+void	error_doublon(t_data *data);

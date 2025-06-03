@@ -10,3 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/so_long.h"
+
+static void	check_doublon(t_data *data)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	ft_printf("| Doublons Check :\n");
+	while (y)
+}
+
+void	error_doublon(t_data *data)
+{
+	if (data->start_amount != 1)
+		error_exit(data, "Must need 1 start.");
+	if (data->total_gems == 0)
+		error_exit(data, "Must need atleast 1 collectible.");
+	if (data->exit_amount != 1)
+		error_exit(data, "Must need 1 exit");
+}
+
