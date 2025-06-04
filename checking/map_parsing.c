@@ -62,3 +62,13 @@ static void check_and_free_map(t_data *data, char *buf, int fd)
 		error_exit(data, "There is nothing in the map.");
 	}
 }
+
+void	map_parsing(t_data *data, char *path)
+{
+	int		fd;
+	char	*buf;
+
+	ft_printf("|\tMap parsing :\n");
+	fd = open(path, O_RDONLY);
+	buf = get_next_line
+}
