@@ -44,3 +44,4 @@ void	error_doublon(t_data *data)
 		error_exit(data, "Must need 1 exit");
 }
 
+

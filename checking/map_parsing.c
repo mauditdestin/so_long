@@ -70,5 +70,21 @@ void	map_parsing(t_data *data, char *path)
 
 	ft_printf("|\tMap parsing :\n");
 	fd = open(path, O_RDONLY);
-	buf = get_next_line
+	buf = get_next_line(fd);
+	check_and_free_map(data, buf, fd);
+	data->size_x = ft_strlen(buf) - 1;
+	while (buf)
+	{
+		free(buf);
+		(data->size_y)++;
+		buf = get_next_line(fd);
+	}
+	if (data->size_x < 3 || data->size_y < 3)
+		error_exit(data, "Invalid map.");
+	free(buf);
+	close(fd);
+	map_malloc(data);
+	map_create(data, path);
+	check_map(data);
+	ft_printf("|\tMap Valid\n");
 }

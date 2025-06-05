@@ -86,6 +86,7 @@ void	movement_check_collectible(t_data *data);
 void	remove_gem(t_data *data);
 void	map_making(t_data *data);
 void	map_rendering(t_data *data);
+void	map_create(t_data *data, char *filepath);
 
 // GRAPHISM
 void	load_textures(t_data *data);
