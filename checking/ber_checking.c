@@ -44,4 +44,17 @@ void	error_doublon(t_data *data)
 		error_exit(data, "Must need 1 exit");
 }
 
+static void	check_element(t_data *data, int y, int x)
+{
+	if (data->map[y][x] == 'P')
+	{
+		(data->start_amount)++;
+		data->cur_x = x;
+		data->cur_y = y;
+	}
+	else if (data->map[y][x] == 'C')
+			(data->collected_gems)++;
+	else if (data->map[y][x] == 'E')
+			(data->exit_amount)++;
+}
 
