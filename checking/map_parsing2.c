@@ -24,6 +24,20 @@ static void create_frame(t_data *data, char *buf, int x, int y)
 	data->check_map[y][data->size_y] = 0;
 }
 
+static void	check_rectangle(t_data *data, char *buf, int fd)
+{
+	if ((int)ft_strlen(buf) - 1  != data->size_x)
+	{
+		while (buf)
+		{
+			free(buf);
+			buf = get_next_line(fd);
+		}
+		close (fd);
+		error_exit(data, "Map isn't rectangle.");
+	}
+}
+
 void map_create(t_data *data, char *filepath)
 {
 	int		y;
