@@ -58,3 +58,25 @@ static void	check_element(t_data *data, int y, int x)
 			(data->exit_amount)++;
 }
 
+static void	check_extension(t_data *data, char *filepath)
+{
+	char	*ext;
+	int	fd;
+
+	ft_printf("|\tExtension check:\n");
+	ext = ft_strrchr(filepath, '.');
+	if (!ext)
+		error_exit(data, "Invalid map path.");
+	if (ft_strncmp(ext, ".ber", ft_strlen(ext)) != 0 || ft_strlen(ext) != 4)
+		error_exit(data, "This is not a .ber file.");
+	fd = open(filepath, O_RDONLY);
+	if (fd < 0)
+	{
+		close(fd);
+		error_exit(data, "The file doesn't exist.");
+	}
+	else
+		close(fd);
+	ft_printf("|\tGood Extension.\n");
+}
+
