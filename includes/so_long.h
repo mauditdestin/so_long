@@ -88,6 +88,7 @@ void	map_making(t_data *data);
 void	map_rendering(t_data *data);
 void	map_create(t_data *data, char *filepath);
 void	map_parsing(t_data *data, char *path);
+void	putmap(t_data *data);
 
 // GRAPHISM
 void	load_textures(t_data *data);

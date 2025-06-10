@@ -10,3 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/so_long.h"
+
+void	putmap(t_data *data)
+{
+	int	y;
+
+	ft_printf("|\n|Map created :\n");
+	y = 0;
+	while (y != data->size_y)
+		ft_printf("|\t\t%s\n", data->map[y++]);
+}
