@@ -19,7 +19,7 @@ LDFLAGS = -Llib -lftprintf
 
 SRC = $(wildcard *.c) \
 	  $(wildcard checking/*.c) \
-	  $(wildcard game/*.c)
+	  $(wildcard srcs/*.c)
 
 OBJ = $(SRC:.c=.o)
 
