@@ -21,3 +21,48 @@ void	putmap(t_data *data)
 	while (y != data->size_y)
 		ft_printf("|\t\t%s\n", data->map[y++]);
 }
+
+void	check_walls(t_data *data)
+{
+	int	y;
+	int	x;
+
+	y = 1;
+	x = 0;
+	ft_printf("|\tBorder walls check:\n");
+	while(data->map[0][x])
+		if (data->map[0][x++] != '1')
+			error_exit(data, "Border walls aren't closed.");
+	x = 0;
+	while (y != data->size_y - 1)
+	{
+		if (data->map[y][0] != '1' || data->map[y][data->size_x - 1] != '1')
+			error_exit(data, "Border walls aren't closed.");
+		y++;
+	}
+	while (data->map[y][x])
+		if(data->map[y][x++] != '1')
+			error_exit(data, "Border walls aren't closed.");
+	printf("|\tBorder walls are closed.");
+}
+
+// FUNCTIONS BELOW ARE FOR CHECKING IS THE MAP IS POSSIBLE
+
+static int is_checked(t_data *data, int y, int x)
+{
+	return (data->check_map[y][x] == '1');
+}
+
+static void	count_element(t_data *data, int y, int x)
+{
+	if (data->map[y][x] == 'C')
+		(data->collected_gems)++;
+	if (data->map[y][x] == 'E')
+		(data->exit_i)++;
+	data->check_map[y][x] = '1';
+}
+
+int	check_if_possible(t_data *data, int y, int x)
+{
+	
+}
