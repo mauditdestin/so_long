@@ -80,3 +80,24 @@ static void	check_extension(t_data *data, char *filepath)
 	ft_printf("|\tGood Extension.\n");
 }
 
+void	ber_check(char **argv, int argc, t_data *data)
+{
+	ft_printf("+----Map Checking----+\n");
+	if (argc == 2)
+	{
+		check_extension(data, argv[1]);
+		map_parsing(data, argv[1]);
+		check_doublon(data);
+		check_walls(data);
+		ft_printf("|\tPossibiliy check: \n");
+		if (check_if_possible(data, data->cur_y, data->cur_x) == 1)
+			ft_printf("|\tMap possible\n");
+		else
+			error_exit(data, "Map impossible to win.");
+		putmap(data);	
+	}
+	else
+		error_exit(data, "Invalid arguments");
+	ft_printf("|\n|Successfully check map, no errors !\n");
+	ft_printf("+------------------------+");
+}
