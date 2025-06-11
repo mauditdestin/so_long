@@ -16,28 +16,13 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include <MLX42/MLX42.h>
+# include "../MLX42/include/MLX42/MLX42.h"
+# include "libft.h"
 
 /* */
 # define SPRITE_SIZE 64
 # define FPS 100000
-typedef struct s_data {
-	mlx_t		*mlx;
-	t_textures	texture;
-	t_image		image;
-	char		**map;
-	char		**check_map;
-	int			start_amount;
-	int			size_y;
-	int			size_x;
-	int			cur_y;
-	int			cur_x;
-	int			movements;
-	int			collected_gems;
-	int			exit_i;
-	int			exit_amount;
-	int			total_gems;
-}	t_data;
+
 typedef	struct s_textures
 {
 	mlx_texture_t	*play;
@@ -65,6 +50,25 @@ typedef	struct s_image
 
 }		t_image;
 
+typedef struct s_data {
+	mlx_t		*mlx;
+	t_textures	texture;
+	t_image		image;
+	char		**map;
+	char		**check_map;
+	int			start_amount;
+	int			size_y;
+	int			size_x;
+	int			cur_y;
+	int			cur_x;
+	int			movements;
+	int			collected_gems;
+	int			exit_i;
+	int			exit_amount;
+	int			total_gems;
+}	t_data;
+
+
 typedef struct s_gem
 {
 	int		y;
@@ -89,6 +93,9 @@ void	map_rendering(t_data *data);
 void	map_create(t_data *data, char *filepath);
 void	map_parsing(t_data *data, char *path);
 void	putmap(t_data *data);
+int		check_is_possible(t_data *data, int y, int x);
+void	ber_check(char **argv, int argc, t_data *data);
+void	check_walls(t_data *data);
 
 // GRAPHISM
 void	load_textures(t_data *data);

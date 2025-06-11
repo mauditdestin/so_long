@@ -58,28 +58,38 @@ void	remove_gem(t_data *data)
 {
 	t_gem gem;
 
-	gem.x = 0;
-	gem.y = 0;
+	gem.gem_color = data->map[data->cur_y][data->cur_x]; // <- CORRECTION : affectation (pas un -)
 	gem.gem_instance = -1;
-	gem.gem_color - data->map[data->cur_y][data->cur_x];
+	gem.y = 0;
 
 	while (gem.y <= data->cur_y)
 	{
+		gem.x = 0; // <- important : on réinitialise gem.x à chaque ligne
 		if (gem.y == data->cur_y)
 		{
 			while (gem.x <= data->cur_x)
-				if(data->map[gem.y][gem.x++] == gem.gem_color || data->map[gem.y][gem.x - 1] == gem.gem_color + 32)
+			{
+				if (data->map[gem.y][gem.x] == gem.gem_color ||
+					data->map[gem.y][gem.x] == gem.gem_color + 32)
 					gem.gem_instance++;
+				gem.x++;
+			}
 		}
 		else
+		{
 			while (gem.x <= data->size_x)
-				if (data->map[gem.y][gem.x++] == gem.gem_color || data->map[gem.y][gem.x - 1] == gem.gem_color + 32)
+			{
+				if (data->map[gem.y][gem.x] == gem.gem_color ||
+					data->map[gem.y][gem.x] == gem.gem_color + 32)
 					gem.gem_instance++;
-		gem.x = 0;
+				gem.x++;
+			}
+		}
 		gem.y++;
 	}
 	delete_gems_sprite(data, gem.gem_color, gem.gem_instance);
 }
+
 
 // Check si le joueur est sur une gemme (G, B, W, R).
 // Si oui, on la ramasse, on met à jour la map, on affiche le nombre de gemmes collectées,

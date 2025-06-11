@@ -62,7 +62,27 @@ static void	count_element(t_data *data, int y, int x)
 	data->check_map[y][x] = '1';
 }
 
-int	check_if_possible(t_data *data, int y, int x)
+int	check_is_possible(t_data *data, int y, int x)
 {
-	
+	int	result[4];
+
+	result[0] = 0;
+	result[1] = 0;
+	result[2] = 0;
+	result[3] = 0;
+	count_element(data, y, x);
+	if (data->exit_i >= 1 && data->total_gems == data->collected_gems)
+		return (1);
+	if (x < 0 || x >= data->size_x || y < 0 || y >= data->size_y
+		|| data->map[y][x] == '1' || data->map[y][x] == 'T')
+		return (0);
+	if (data->map[y][x + 1] != '1' && !is_checked(data, y, x + 1))
+		result[0] = check_is_possible(data, y, x + 1);
+	if (data->map[y][x - 1] != '1' && !is_checked(data, y, x - 1))
+		result[1] = check_is_possible(data, y, x - 1);
+	if (data->map[y + 1][x] != '1' && !is_checked(data, y + 1, x))
+		result[2] = check_is_possible(data, y + 1, x);
+	if (data->map[y - 1][x] != '1' && !is_checked(data, y - 1, x))
+		result[3] = check_is_possible(data, y - 1, x);
+	return (result[0] || result[1] || result[2] || result[3]);
 }

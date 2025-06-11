@@ -12,26 +12,18 @@
 
 #include "../includes/so_long.h"
 
-static void	check_doublon(t_data *data)
+static void	check_element(t_data *data, int y, int x)
 {
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	ft_printf("| Doublons Check :\n");
-	while (y != data->size_y)
+	if (data->map[y][x] == 'P')
 	{
-		while (x != data->size_x)
-		{
-			fonctiontemp(data, y, x);
-			x++;
-		}
-		x = 0;
-		y++;
+		(data->start_amount)++;
+		data->cur_x = x;
+		data->cur_y = y;
 	}
-	error_doublon(data);
-	ft_printf("|\tNo Doublons\n");
+	else if (data->map[y][x] == 'C')
+			(data->total_gems)++;
+	else if (data->map[y][x] == 'E')
+			(data->exit_amount)++;
 }
 
 void	error_doublon(t_data *data)
@@ -44,18 +36,26 @@ void	error_doublon(t_data *data)
 		error_exit(data, "Must need 1 exit");
 }
 
-static void	check_element(t_data *data, int y, int x)
+static void	check_doublon(t_data *data)
 {
-	if (data->map[y][x] == 'P')
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	ft_printf("| Doublons Check :\n");
+	while (y != data->size_y)
 	{
-		(data->start_amount)++;
-		data->cur_x = x;
-		data->cur_y = y;
+		while (x != data->size_x)
+		{
+			check_element(data, y, x);
+			x++;
+		}
+		x = 0;
+		y++;
 	}
-	else if (data->map[y][x] == 'C')
-			(data->collected_gems)++;
-	else if (data->map[y][x] == 'E')
-			(data->exit_amount)++;
+	error_doublon(data);
+	ft_printf("|\tNo Doublons\n");
 }
 
 static void	check_extension(t_data *data, char *filepath)
@@ -90,7 +90,7 @@ void	ber_check(char **argv, int argc, t_data *data)
 		check_doublon(data);
 		check_walls(data);
 		ft_printf("|\tPossibiliy check: \n");
-		if (check_if_possible(data, data->cur_y, data->cur_x) == 1)
+		if (check_is_possible(data, data->cur_y, data->cur_x) == 1)
 			ft_printf("|\tMap possible\n");
 		else
 			error_exit(data, "Map impossible to win.");
