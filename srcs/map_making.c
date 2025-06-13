@@ -14,31 +14,36 @@
 
 static void	player_commands(void *param)
 {
-	t_data *data;
+	t_data		*data;
 
 	data = param;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_UP) || mlx_is_key_down(data->mlx, MLX_KEY_W))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_UP)
+		|| mlx_is_key_down(data->mlx, MLX_KEY_W))
 		up(data);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_DOWN) || mlx_is_key_down(data->mlx, MLX_KEY_S))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_DOWN)
+		|| mlx_is_key_down(data->mlx, MLX_KEY_S))
 		down(data);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT) || mlx_is_key_down(data->mlx, MLX_KEY_D))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT)
+		|| mlx_is_key_down(data->mlx, MLX_KEY_A))
+		left(data);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT)
+		|| mlx_is_key_down(data->mlx, MLX_KEY_D))
 		right(data);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT) || mlx_is_key_down(data->mlx, MLX_KEY_A))
-		left(data);	
 }
 
-void map_making(t_data *data)
+void	map_making(t_data *data)
 {
-	data->mlx = mlx_init(data->size_y * SPRITE_SIZE, data->size_y * SPRITE_SIZE, "So long", true);
+	data->mlx = mlx_init(data->size_x * SPRITE_SIZE,
+			data->size_y * SPRITE_SIZE, "So_long", true);
 	if (!(data->mlx))
 		error_exit(data, "Window couldn't be created");
 	load_textures(data);
 	map_rendering(data);
-	data->collected_gems = 0;
+	data->collectible_i = 0;
 	mlx_loop_hook(data->mlx, player_commands, data);
 	mlx_loop(data->mlx);
-	destroy_texture(data);
+	destroy_textures(data);
 	mlx_terminate(data->mlx);
 }

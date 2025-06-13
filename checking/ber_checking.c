@@ -21,29 +21,29 @@ static void	check_element(t_data *data, int y, int x)
 		data->cur_y = y;
 	}
 	else if (data->map[y][x] == 'C')
-			(data->total_gems)++;
+		(data->collectible_amount)++;
 	else if (data->map[y][x] == 'E')
-			(data->exit_amount)++;
+		(data->exit_amount)++;
 }
 
-void	error_doublon(t_data *data)
+void	doublon_error(t_data *data)
 {
 	if (data->start_amount != 1)
-		error_exit(data, "Must need 1 start.");
-	if (data->total_gems == 0)
-		error_exit(data, "Must need atleast 1 collectible.");
+		error_exit(data, "must need 1 start");
+	if (data->collectible_amount == 0)
+		error_exit(data, "must need atleast 1 collectible");
 	if (data->exit_amount != 1)
-		error_exit(data, "Must need 1 exit");
+		error_exit(data, "must need 1 exit");
 }
 
-static void	check_doublon(t_data *data)
+static void	check_doublons(t_data *data)
 {
-	int x;
-	int y;
+	int	y;
+	int	x;
 
-	x = 0;
 	y = 0;
-	ft_printf("| Doublons Check :\n");
+	x = 0;
+	ft_printf("|  Doublons check :\n");
 	while (y != data->size_y)
 	{
 		while (x != data->size_x)
@@ -54,50 +54,50 @@ static void	check_doublon(t_data *data)
 		x = 0;
 		y++;
 	}
-	error_doublon(data);
+	doublon_error(data);
 	ft_printf("|\tNo Doublons\n");
 }
 
-static void	check_extension(t_data *data, char *filepath)
+static void	check_ext(t_data *data, char *filepath)
 {
 	char	*ext;
-	int	fd;
+	int		fd;
 
-	ft_printf("|\tExtension check:\n");
+	ft_printf("|  Extension check :\n");
 	ext = ft_strrchr(filepath, '.');
 	if (!ext)
-		error_exit(data, "Invalid map path.");
+		error_exit(data, "invalid map path");
 	if (ft_strncmp(ext, ".ber", ft_strlen(ext)) != 0 || ft_strlen(ext) != 4)
-		error_exit(data, "This is not a .ber file.");
+		error_exit(data, "not a .ber");
 	fd = open(filepath, O_RDONLY);
 	if (fd < 0)
 	{
 		close(fd);
-		error_exit(data, "The file doesn't exist.");
+		error_exit(data, "file doesn't exist");
 	}
 	else
 		close(fd);
-	ft_printf("|\tGood Extension.\n");
+	ft_printf("|\tGood extension\n");
 }
 
-void	ber_check(char **argv, int argc, t_data *data)
+void	ber_check(int argc, char **argv, t_data *data)
 {
-	ft_printf("+----Map Checking----+\n");
+	ft_printf("+--- Map Checking ---\n");
 	if (argc == 2)
 	{
-		check_extension(data, argv[1]);
+		check_ext(data, argv[1]);
 		map_parsing(data, argv[1]);
-		check_doublon(data);
+		check_doublons(data);
 		check_walls(data);
-		ft_printf("|\tPossibiliy check: \n");
+		ft_printf("|  Possibility check :\n");
 		if (check_is_possible(data, data->cur_y, data->cur_x) == 1)
 			ft_printf("|\tMap possible\n");
 		else
-			error_exit(data, "Map impossible to win.");
-		putmap(data);	
+			error_exit(data, "Map impossible to win");
+		putmap(data);
 	}
 	else
-		error_exit(data, "Invalid arguments");
-	ft_printf("|\n|Successfully check map, no errors !\n");
-	ft_printf("+------------------------+");
+		error_exit(data, "invalid argument");
+	ft_printf("|\n| Successfully check map, no errors !\n");
+	ft_printf("+--------------------\n");
 }

@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 	if (!data)
 		return (1);
 	ft_memset(data, 0, sizeof(t_data));
-	ber_check(argv, argc, data);
+	ber_check(argc, argv, data);
 	map_making(data);
 	free_data(data);
 	ft_printf("|\n| Window closed, good bye !\n");

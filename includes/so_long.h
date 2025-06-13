@@ -16,13 +16,21 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include "../MLX42/include/MLX42/MLX42.h"
+# include <stdbool.h>
+# include <stdio.h>
+# include <MLX42/MLX42.h>
 # include "libft.h"
 
 /* */
 # define SPRITE_SIZE 64
 # define FPS 100000
-
+typedef struct s_gem
+{
+	int		y;
+	int		x;
+	char	gem_color;
+	int		gem_instance;
+}		t_gem;
 typedef	struct s_textures
 {
 	mlx_texture_t	*play;
@@ -62,20 +70,14 @@ typedef struct s_data {
 	int			cur_y;
 	int			cur_x;
 	int			movements;
-	int			collected_gems;
+	int			collectible_i;
 	int			exit_i;
 	int			exit_amount;
-	int			total_gems;
+	int			collectible_amount;
 }	t_data;
 
 
-typedef struct s_gem
-{
-	int		y;
-	int		x;
-	char	gem_color;
-	int		gem_instance;
-}		t_gem;
+
 
 // MOVEMENTS
 void	up(t_data *data);
@@ -94,13 +96,13 @@ void	map_create(t_data *data, char *filepath);
 void	map_parsing(t_data *data, char *path);
 void	putmap(t_data *data);
 int		check_is_possible(t_data *data, int y, int x);
-void	ber_check(char **argv, int argc, t_data *data);
+void	ber_check(int argc, char **argv, t_data *data);
 void	check_walls(t_data *data);
 
 // GRAPHISM
 void	load_textures(t_data *data);
-void	destroy_texture(t_data *data);
+void	destroy_textures(t_data *data);
 
 // ERROR
 void	error_exit(t_data *data, char *erreur);
-void	error_doublon(t_data *data);
+void	doublon_error(t_data *data);
