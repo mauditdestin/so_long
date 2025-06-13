@@ -26,7 +26,7 @@ void	up(t_data *data)
 	}
 }
 
-void	 down(t_data *data)
+void	down(t_data *data)
 {
 	if (movement_check_walls(data, data->cur_y + 1, data->cur_x))
 	{

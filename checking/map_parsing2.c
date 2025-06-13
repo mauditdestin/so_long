@@ -12,7 +12,7 @@
 
 #include "../includes/so_long.h"
 
-static void create_frame(t_data *data, char *buf, int x, int y)
+static void	create_frame(t_data *data, char *buf, int x, int y)
 {
 	while (buf[x] != '\n' && buf[x])
 	{
@@ -26,7 +26,7 @@ static void create_frame(t_data *data, char *buf, int x, int y)
 
 static void	check_rectangle(t_data *data, char *buf, int fd)
 {
-	if ((int)ft_strlen(buf) - 1  != data->size_x)
+	if ((int)ft_strlen(buf) - 1 != data->size_x)
 	{
 		while (buf)
 		{
@@ -38,7 +38,7 @@ static void	check_rectangle(t_data *data, char *buf, int fd)
 	}
 }
 
-void map_create(t_data *data, char *filepath)
+void	map_create(t_data *data, char *filepath)
 {
 	int		y;
 	int		x;

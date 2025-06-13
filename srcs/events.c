@@ -16,10 +16,11 @@
 // Retourne 1 si ce n’est pas un mur ('1'), sinon 0.
 int	movement_check_walls(t_data *data, int y, int x)
 {
-	return(!(data->map[y][x] == '1'));
+	return (!(data->map[y][x] == '1'));
 }
 
-// Désactive l'instance d'une gemme selon sa couleur et son index pour la retirer visuellement du jeu.
+// Désactive l'instance d'une gemme selon sa couleur 
+// et son index pour la retirer visuellement du jeu.
 static void	delete_gem_sprite(t_data *data, char gem_color, int gem_instance)
 {
 	if (gem_color == 'G')
@@ -63,7 +64,8 @@ void	remove_gem(t_data *data)
 }
 
 // Check si le joueur est sur une gemme (G, B, W, R).
-// Si oui, on la ramasse, on met à jour la map, on affiche le nombre de gemmes collectées,
+// Si oui, on la ramasse, on met à jour la map, 
+// on affiche le nombre de gemmes collectées,
 // et on affiche un message spécial si toutes les gemmes ont été trouvées.
 void	movement_check_collectible(t_data *data)
 {
@@ -81,8 +83,10 @@ void	movement_check_collectible(t_data *data)
 	}
 }
 
-// Vérifie si le joueur est sur la sortie et s'il a collecté toutes les gems : si oui, il peut quitter.
-// Sinon, affiche un message s’il manque des gems. Si le joueur est sur un ennemi, il meurt et le jeu se ferme
+// Vérifie si le joueur est sur la sortie et s'il a collecté 
+// toutes les gems : si oui, il peut quitter.
+// Sinon, affiche un message s’il manque des gems. 
+// Si le joueur est sur un ennemi, il meurt et le jeu se ferme
 void	movement_check_exit(t_data *data)
 {
 	if (data->map[data->cur_y][data->cur_x] == 'E'

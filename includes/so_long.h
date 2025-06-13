@@ -13,25 +13,26 @@
 #pragma once
 
 /* Lib for malloc, exit, write, and open */
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <MLX42/MLX42.h>
-# include "libft.h"
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <MLX42/MLX42.h>
+#include "libft.h"
 
-/* */
-# define SPRITE_SIZE 64
-# define FPS 100000
+#define SPRITE_SIZE 64
+#define FPS 100000
+
 typedef struct s_gem
 {
 	int		y;
 	int		x;
 	char	gem_color;
 	int		gem_instance;
-}		t_gem;
-typedef	struct s_textures
+}	t_gem;
+
+typedef struct s_textures
 {
 	mlx_texture_t	*play;
 	mlx_texture_t	*wall;
@@ -41,10 +42,10 @@ typedef	struct s_textures
 	mlx_texture_t	*bgem;
 	mlx_texture_t	*ggem;
 	mlx_texture_t	*rgem;
-	mlx_texture_t	*skeleton;
-}		t_textures;
+	mlx_texture_t	*sklt;
+}	t_textures;
 
-typedef	struct s_image
+typedef struct s_image
 {
 	mlx_image_t		*back;
 	mlx_image_t		*play;
@@ -54,11 +55,11 @@ typedef	struct s_image
 	mlx_image_t		*bgem;
 	mlx_image_t		*ggem;
 	mlx_image_t		*rgem;
-	mlx_image_t		*skeleton;
+	mlx_image_t		*sklt;
+}	t_image;
 
-}		t_image;
-
-typedef struct s_data {
+typedef struct s_data
+{
 	mlx_t		*mlx;
 	t_textures	texture;
 	t_image		image;
@@ -75,9 +76,6 @@ typedef struct s_data {
 	int			exit_amount;
 	int			collectible_amount;
 }	t_data;
-
-
-
 
 // MOVEMENTS
 void	up(t_data *data);

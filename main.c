@@ -31,16 +31,17 @@ static void	free_data(t_data *data)
 	free(data);
 }
 
-void error_exit(t_data *data, char *erreur)
+void	error_exit(t_data *data, char *erreur)
 {
 	free_data(data);
 	ft_printf("|\tError\n---> %s\n", erreur);
 	exit(EXIT_FAILURE);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_data *data;
+	t_data	*data;
+
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (1);

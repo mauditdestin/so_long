@@ -48,7 +48,7 @@ void	check_walls(t_data *data)
 
 // FUNCTIONS BELOW ARE FOR CHECKING IS THE MAP IS POSSIBLE
 
-static int is_checked(t_data *data, int y, int x)
+static int	is_checked(t_data *data, int y, int x)
 {
 	return (data->check_map[y][x] == '1');
 }

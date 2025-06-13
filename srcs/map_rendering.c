@@ -30,8 +30,10 @@ static void	put_collectible2(t_data *data, int y, int x, int gem_color)
 	}
 }
 
-// Tire une gemme aléatoire (verte, bleue, blanche ou rouge) et l'affiche sur la carte.
-// Met à jour la case correspondante dans la map avec la lettre de la gemme.
+// Tire une gemme aléatoire (verte, bleue, blanche ou rouge) 
+// et l'affiche sur la carte.
+// Met à jour la case correspondante 
+// dans la map avec la lettre de la gemme.
 static void	put_collectible(t_data *data, int y, int x)
 {
 	int	gem_color;
@@ -52,8 +54,10 @@ static void	put_collectible(t_data *data, int y, int x)
 	put_collectible2(data, y, x, gem_color);
 }
 
-// Affiche l’arrière-plan puis les sprites de la case (mur, sortie, ennemi, collectible...).
-// Si la case contient un collectible, appelle la fonction pour l’afficher.
+// Affiche l’arrière-plan puis 
+// les sprites de la case (mur, sortie, ennemi, collectible...).
+// Si la case contient un collectible, 
+// appelle la fonction pour l’afficher.
 static void	put_sprite(t_data *data, int y, int x)
 {
 	mlx_image_to_window(data->mlx, data->image.back,
@@ -65,7 +69,7 @@ static void	put_sprite(t_data *data, int y, int x)
 		mlx_image_to_window(data->mlx, data->image.exit,
 			x * SPRITE_SIZE, y * SPRITE_SIZE);
 	if (data->map[y][x] == 'T')
-		mlx_image_to_window(data->mlx, data->image.skeleton,
+		mlx_image_to_window(data->mlx, data->image.sklt,
 			x * SPRITE_SIZE, y * SPRITE_SIZE);
 	if (data->map[y][x] == 'C')
 		put_collectible(data, y, x);
